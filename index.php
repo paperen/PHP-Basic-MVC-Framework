@@ -1,23 +1,11 @@
 <?php
-	/**
-	 * PHP Basic MVC Framework Part 7 - Router
-	 * By John White (@Jontyy)
-	 */
+/**
+ * PHP Basic MVC Framework Part 7 - Router
+ * creator By John White (@Jontyy)
+ * modify by paperen https://github.com/paperen/PHP-Basic-MVC-Framework
+ */
 
-	define('SITE_PATH',realpath(dirname(__FILE__)).'/');
-
-	/*Require necessary files.*/
-	require_once(SITE_PATH.'application/request.php');
-	require_once(SITE_PATH.'application/router.php');
-	require_once(SITE_PATH.'application/baseController.php');
-	require_once(SITE_PATH.'application/baseModel.php');
-	require_once(SITE_PATH.'application/load.php');
-	require_once(SITE_PATH.'application/registry.php');
-	require_once(SITE_PATH.'controllers/errorController.php');
-
-	try{
-		Router::route(new Request);
-	}catch(Exception $e){
-		$controller = new errorController;
-		$controller->error($e->getMessage());
-	}
+define('SYS_PATH', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR);
+define('APP_PATH', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR);
+require SYS_PATH . 'framework.php';
+framework::run();
