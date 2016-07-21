@@ -2,10 +2,8 @@
 	class Load{
 		
 		public function view($name,array $vars = null){
-			$file = APP_PATH.'views/'.$name.'View.php';
-
+			$file = APP_PATH.'views/'.$name.'.php';
 			if(is_readable($file)){
-
 				if(isset($vars)){
 					extract($vars);
 				}

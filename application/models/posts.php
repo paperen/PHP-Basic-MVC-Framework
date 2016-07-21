@@ -1,13 +1,10 @@
 <?php
-
-	class posts extends baseModel{
-		
-		public function getEntries(){
-			$return = array();
-			$return[0] = array('title'=>'hello world');
-			$return[1] = array('title'=>'hello universe');
-
-			return $return;
-		}
-	}
-?>
+class posts extends baseModel{
+	
+	protected $_pk = 'id';
+	protected $_fields = array(
+		'title' => '标题',
+		'urltitle' => 'url标题',
+	);
+	protected $_table_name = 'post';
+}
