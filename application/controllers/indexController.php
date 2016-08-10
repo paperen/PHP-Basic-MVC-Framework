@@ -10,5 +10,10 @@ class indexController extends baseController{
 		set_pagetitle('home');
 		$this->load->layout('index', $data);
 	}
+	
+	public function test($a=NULL) {
+		$test = $this->load->library('test');
+		$test->a();
+	}
 
 }
