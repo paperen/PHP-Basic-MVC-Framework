@@ -28,9 +28,10 @@
 				}
 			} else if( $url_mode == 2 ) {
 				$request_url = $_SERVER['REQUEST_URI'];
+				$temp_request = parse_url($request_url);
 				$temp = parse_url(config_item('site_url'));
 				if ( $request_url ) {
-					$request_url = str_replace($temp['path'], '', $request_url);
+					$request_url = str_replace($temp['path'], '', $temp_request['path']);
 					$temp = explode('/', trim($request_url, '/'));
 					$c = array_shift($temp);
 					$m = array_shift($temp);

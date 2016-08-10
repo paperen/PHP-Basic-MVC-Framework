@@ -3,19 +3,15 @@
 		
 		protected $_registry;
 
-		protected $load;
+		public $load;
 
 		public function __construct(){
-			$this->_registry = Registry::getInstance();
 			$this->load = new Load;
 		}
 		abstract public function index();
-
-		final public function __get($key){
-			if($return = $this->_registry->$key){
-				return $return;
-			}
-			return false;
-		}	
+		
+		function __get($name) {
+			if ( isset( $this->load->$name ) ) return $this->load->$name;
+		}
 	}
 ?>

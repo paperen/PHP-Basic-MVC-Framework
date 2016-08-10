@@ -7,8 +7,8 @@ class indexController extends baseController{
 	}
 	public function index(){
 		$data = array();
-		$this->load->model('posts');
-		$this->load->view('index',$data);	
+		set_pagetitle('home');
+		$this->load->layout('index', $data);
 	}
 
 }

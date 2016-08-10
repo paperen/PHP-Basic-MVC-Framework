@@ -14,11 +14,12 @@
 				require_once $controllerFile;
 				
 				$controller = new $controller;
+				$controller->load->request = $request;
 				$method = (is_callable(array($controller,$method))) ? $method : 'index';	
-				
+
 				if(!empty($args)){
 					call_user_func_array(array($controller,$method),$args);
-				}else{	
+				}else{
 					call_user_func(array($controller,$method));
 				}	
 				return;

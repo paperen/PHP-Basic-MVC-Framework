@@ -17,7 +17,6 @@ class framework
 		require_once(SYS_PATH.'baseController.php');
 		require_once(SYS_PATH.'baseModel.php');
 		require_once(SYS_PATH.'load.php');
-		require_once(SYS_PATH.'registry.php');
 		require_once(SYS_PATH.'common.php');
 		require_once(CONTROLLER_PATH.'errorController.php');
 		require_once(CONFIG_PATH.'config.php');

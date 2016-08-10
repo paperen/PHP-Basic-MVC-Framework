@@ -167,7 +167,6 @@ class baseModel{
 	 */
 	public function all( $limit = 0, $offset = 0 ) {
 		$tablename = $this->_table_name();
-		print_r($this->_fields());
 		$fields = implode( '`,`', $this->_fields() );
 		$key = $this->_primary_key();
 		$sql = "select `{$fields}` from {$tablename} order by {$key} desc";
@@ -184,6 +183,11 @@ class baseModel{
 		$sql = "select count(*) from `{$tablename}`";
 		$r = $this->db->get_one($sql);
 		return $r['count(*)'];
+	}
+	
+	public function execute($sql) {
+		$this->db->query($sql);
+		return $this->db->affected_rows();
 	}
 }
 ?>

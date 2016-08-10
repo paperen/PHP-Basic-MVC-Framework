@@ -1,6 +1,7 @@
 <?php
 	class Load{
 		
+		public $request;
 		public function view($name,array $vars = null){
 			$file = APP_PATH.'views/'.$name.'.php';
 			if(is_readable($file)){
@@ -17,11 +18,8 @@
 			$modelPath = APP_PATH.'models/'.$model.'.php';
 			if(is_readable($modelPath)){
 				require_once($modelPath);
-				if(class_exists($model)){
-					$registry = Registry::getInstance();
-					$registry->$name = new $model;
-					return true;
-				}
+				if(class_exists($model)) $this->$model = new $model();
+				return;				
 			}
 			throw new Exception('Model issues.');	
 		}
@@ -44,7 +42,20 @@
 		 * @param string $helper 函数库文件(不含后缀)
 		 */
 		public function helper($helper) {
-			$helper_name = trim($helper_name, '.php');
+			$helper_name = trim($helper, '.php');
 			if ( file_exists( HELPER_PATH . "{$helper_name}.php" ) ) include(HELPER_PATH . "{$helper_name}.php");
+		}
+		
+		private $_layout = 'default';
+		public function set_layout($layout) {
+			$this->_layout = $layout;
+		}
+		
+		public function layout($view, array $vars = null) {
+			ob_start();
+			$this->view($view, $vars);
+			$html = ob_get_contents();
+			ob_end_clean();
+			$this->view("layout/{$this->_layout}", ['html'=>$html]);
 		}
 	}

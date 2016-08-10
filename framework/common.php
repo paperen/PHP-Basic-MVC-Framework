@@ -40,3 +40,37 @@ function database() {
 	$_db->connect($db_config['dbhost'], $db_config['dbuser'], $db_config['dbpwd'], $db_config['dbname'], $db_config['pconnect'], $db_config['charset']);
 	return $_db;
 }
+/**
+ * 重定向
+ * @param string $url
+ */
+function redirect($url) {
+	header("location:{$url}");
+	exit;
+}
+/**
+ * 组合站点链接
+ * @param string $uri
+ * @return string
+ */
+function base_url($uri = NULL) {
+	return config_item('site_url') . $uri;
+}
+
+/**
+ * 设置页面标题
+ * @param string $title 标题
+ */
+function set_pagetitle($title = '') {
+	$f = get_instance();
+	$f->pagetitle = $title;
+}
+
+/**
+ * 获取页面标题
+ * @return string
+ */
+function get_pagetitle() {
+	$f = get_instance();
+	return $f->pagetitle;
+}
